@@ -21,7 +21,7 @@
 					 Alueet jotka eivät ole sinisellä alueella ovat vähintään 50 m rakennuksesta.<br>
 					 Aineiston käsittely QGIS:illä </p>	
 					 <hr>
-					<div id="mapid" style="height: 900px;"}"></div>
+					<div id="mapid" style="height: 900px;"}></div>
 					<script>
 						var mymap = L.map('mapid').setView([60.23, 25.39], 10);
 						var wmsLayer = L.tileLayer.wms('http://avoindata.maanmittauslaitos.fi:80/geoserver/wms?SERVICE=WMS&', {layers: 'Taustakartta'}).addTo(mymap);
