@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>WebMap</title>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="crossorigin=""></script>
+		<script src="https://superkudda22.github.io/Webmap_test/leaflet.ajax.min.js"></script>
+</head>
+<body>
+
+	<!--Main page -->
+	<section id="page" class="maps">
+		<div class="container">
+			<div class="row center-xs center-sm center-md center-lg">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h1>Löytyykö Porvoosta rakentamatona rantaa? </h1>
+					<p>Rakennusten ympäri olen tehnyt puskurin 50 m säteellä.<br>
+					 Päällekkäiset puskurit yhdistetty yhtenäiseksi alueeksi.<br>
+					 Alueet jotka eivät ole sinisellä alueella ovat vähintään 50 m rakennuksesta.<br>
+					 Aineiston käsittely QGIS:illä </p>	
+					 <hr>
+					<div id="mapid" style="height: 900px;"}"></div>
+					<script>
+						var mymap = L.map('mapid').setView([60.23, 25.39], 10);
+						var wmsLayer = L.tileLayer.wms('http://avoindata.maanmittauslaitos.fi:80/geoserver/wms?SERVICE=WMS&', {layers: 'Taustakartta'}).addTo(mymap);
+
+						var geojsonLayer = new L.GeoJSON.AJAX("https://superkudda22.github.io/Webmap_test/rakennus_50m_clean_wgs84.geojson");
+						geojsonLayer.addTo(mymap);
+
+
+					</script>
+					<hr>
+					<h1>Data</h1>
+					<p>Taustakartta: Maanmittauslaitoksen wms-palvelusta <br>
+						Reknnukset: Maanmittauslaitoksen maastotietokannasta</p>	
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
